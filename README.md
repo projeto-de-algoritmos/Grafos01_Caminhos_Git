@@ -1,45 +1,37 @@
-**!! Atenção: Renomeie o seu repositório para (Tema)_(NomeDoProjeto). !!** 
+# Busca Git
 
-Temas:
- - Grafos1
- - Grafos2
- - PD
- - D&C
- - Greed
- - Final 
- 
- **!! *Não coloque os nomes dos alunos no título do repositório*. Exemplo de título correto: Grafos2_Labirinto-do-Minotauro !!**
- 
- (Apague essa seção)
-
-# NomedoProjeto
-
-**Número da Lista**: X<br>
-**Conteúdo da Disciplina**: XXXXXXXXXX<br>
+**Número da Lista**: 01<br>
+**Conteúdo da Disciplina**: Busca em largura<br>
 
 ## Alunos
-|Matrícula | Aluno |
-| -- | -- |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
-| xx/xxxxxx  |  xxxx xxxx xxxxx |
 
-## Sobre 
-Descreva os objetivos do seu projeto e como ele funciona. 
+| Matrícula  | Aluno           |
+| ---------- | --------------- |
+| 16/0111978 | André Eduardo   |
+| xx/xxxxxx  | xxxx xxxx xxxxx |
+
+## Sobre
+
+algoritmo que busca um caminho entre dois usuarios do github, por meio de seus amigos em comum
 
 ## Screenshots
+
 Adicione 3 ou mais screenshots do projeto em funcionamento.
 
-## Instalação 
-**Linguagem**: xxxxxx<br>
-**Framework**: (caso exista)<br>
+## Instalação
+
+**Linguagem**: JavaScrip<br>
+**Framework**: Node<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
-## Uso 
+Para rodar o projeto e nescessario ter instalado:
+Node;
+Yarn;
+
+## Uso
+
 Explique como usar seu projeto caso haja algum passo a passo após o comando de execução.
 
-## Outros 
+## Outros
+
 Quaisquer outras informações sobre seu projeto podem ser descritas abaixo.
-
-
-
-
