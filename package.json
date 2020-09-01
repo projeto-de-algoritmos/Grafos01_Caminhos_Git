@@ -1,0 +1,33 @@
+{
+  "name": "caminho_git",
+  "version": "1.0.0",
+  "description": "busca em largura na api do github",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/projeto-de-algoritmos/Grafos01_Caminhos_Git.git"
+  },
+  "author": "Andre Eduardo e Arthur Alves",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/projeto-de-algoritmos/Grafos01_Caminhos_Git/issues"
+  },
+  "homepage": "https://github.com/projeto-de-algoritmos/Grafos01_Caminhos_Git#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^6.6.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.5.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-prettier": "^3.1.1",
+    "prettier": "1.18.2",
+    "sucrase": "^3.10.1"
+  }
+}
