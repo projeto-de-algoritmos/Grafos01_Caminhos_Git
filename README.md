@@ -24,9 +24,9 @@ Adicione 3 ou mais screenshots do projeto em funcionamento.
 **Framework**: Node<br>
 Descreva os pré-requisitos para rodar o seu projeto e os comandos necessários.
 
-Para rodar o projeto e nescessario ter instalado:
-Node;
-Yarn;
+Para rodar o projeto é necessário ter instalado:
+Node;<br>
+Yarn;<br>
 
 ## Uso
 
