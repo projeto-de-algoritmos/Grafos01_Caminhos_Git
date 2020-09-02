@@ -20,8 +20,13 @@ class Graph {
   }
 
   bfs(origin, destiny) {
-    let resulting_tree = {};
-    let queue = [];
+    let resulting_tree = {}; // objeto para armazenar a árvore final.
+    resulting_tree[origin] = { // adicionando o nó origem como raiz ao resultado final da árvore de busca.
+      'name': origin,
+      'parent': null, // esse nó não tem pai, significa que é a raiz da árvore.
+      'sons': [],
+    }
+    let queue = []; // fila utilizada no algoritmo bfs.
 
     this.nodes[origin]['is_visited'] = true; // marcando o nó inicial da busca como visitado.
     queue.push(origin); // adicionando o nó ao final da fila.
@@ -31,19 +36,30 @@ class Graph {
       for (let neighbor of this.nodes[u]['neighbors']) { // para cada vizinho de u.
         console.log('cada vizinho -> ', neighbor);
         if (!this.nodes[neighbor]['is_visited']) { // se o vizinho de u, em questão, não foi visitado ainda então...
-          this.nodes[neighbor]['is_visited'] = true; // marcando nó atual como visitado.
+          var tree_node = { // criando o nó do vizinho de u na árvore.
+            'name': neighbor,
+            'parent': u,
+            'sons': [],
+          };
+          resulting_tree[neighbor] = tree_node; // adicionando o nó, criado acima, na árvore.
+          resulting_tree[u]['sons'].push(neighbor); // adicionando a aresta u -> tree_node na árvore.
           queue.push(neighbor); // adicionando o nó atual à fila.
+          this.nodes[neighbor]['is_visited'] = true; // marcando nó atual como visitado.
           
           if (this.nodes[neighbor]['login'] === destiny) // se o no atual for igual ao nó que estou procurando, retorna a árvore BFS.
-            return destiny + ' has found!';
+            return resulting_tree;
           
         }
       }
 
     }
     
+    for (let node in this.nodes)
+      this.nodes[node]['is_visited'] = false;
 
-    return 'not found!';
+    resulting_tree = {};
+
+    return {}; // se não encontrar retorna um objeto vazio ( apagando o nó inicial que havia sido colocado na árvore resposta no começo ).
   }
 
   print () {
@@ -52,8 +68,8 @@ class Graph {
     }
   }
 
-
 }
+
 
 /*
 Exemplo de JSON que deve vir em data:
