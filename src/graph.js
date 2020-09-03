@@ -30,12 +30,14 @@ class Graph {
 
     this.nodes[origin]['is_visited'] = true; // marcando o nó inicial da busca como visitado.
     queue.push(origin); // adicionando o nó ao final da fila.
+    
     while (queue.length != 0) { // enquanto a fila nao estiver vazia.
       let u = queue.shift(); // retira o primeiro da fila e salva em u.
-      console.log('no atual ->', u);
+      console.log('cada no -> ', u);
       for (let neighbor of this.nodes[u]['neighbors']) { // para cada vizinho de u.
-        console.log('cada vizinho -> ', neighbor);
+        
         if (!this.nodes[neighbor]['is_visited']) { // se o vizinho de u, em questão, não foi visitado ainda então...
+          console.log('vizinhos nao visitados ->> ', neighbor);
           var tree_node = { // criando o nó do vizinho de u na árvore.
             'name': neighbor,
             'parent': u,
@@ -54,22 +56,42 @@ class Graph {
 
     }
     
-    for (let node in this.nodes)
+    for (let node in this.nodes) // loop para setar a propriedade 'is_visited' de todos os elementos para falso, para realizar uma nova busca.
       this.nodes[node]['is_visited'] = false;
-
-    resulting_tree = {};
 
     return {}; // se não encontrar retorna um objeto vazio ( apagando o nó inicial que havia sido colocado na árvore resposta no começo ).
   }
 
   print () {
-    for (var node in this.nodes) {
+    for (let node in this.nodes) {
       console.log(node);
     }
   }
 
-}
+  path (origin, destiny) {
+    let tree = this.bfs(origin, destiny); // salvando a árvore gerada pelo algoritmo BFS.
 
+    if (Object.getOwnPropertyNames(tree).length === 0) // verificando se não é um objeto vazio.
+      return {};
+
+    let shortest_path = []; // estrutura para armazenar a lista do menor caminho.
+    shortest_path.unshift(destiny); // adiciona o nó procurado na lista.
+    shortest_path.unshift(tree[destiny]['parent']) // adicionando o nó mãe de destiny na lista, pois tem q ser no mínimo 2 nós de resposta.
+    
+    let aux = tree[tree[destiny]['parent']]['parent']; // variável auxiliar guarda o nó mãe do nó mãe de destiny;
+
+    while (aux != null) { // se o nó mãe do nó mãe da pessoa procurada for diferente de nulo, então ainda não chegou no nó raiz da árvore (nó origem).
+      shortest_path.unshift(aux); // adiciona o nó mãe do nó mãe da pessoa procurada na lista de menor caminho entre os nós em questão.
+
+      aux = tree[aux]['parent']; // nó auxiliar recebe um parente acima do nó adicionado à lista de menor caminho, e assim sucessivamente até encontrar a raiz.
+    }
+
+    return shortest_path; // retornando a lista de menor caminho.
+
+    
+  }
+
+}
 
 /*
 Exemplo de JSON que deve vir em data:
