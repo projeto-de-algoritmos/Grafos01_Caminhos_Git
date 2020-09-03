@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import api from './api';
 import Graph from './graph';
 class BuscaGit {
@@ -10,27 +11,49 @@ class BuscaGit {
     let name = 'Andre-Eduardo';
     const procurado = 'fepas';
     let vizinhos = [];
-    let achou = false;
+
     graph.addNode(inicial);
     let cont = 0;
-
-    while (cont <= 10) {
-      let response = await api.get(`/users/${name}/followers`);
+    let num = 0;
+    let camada = 0;
+    while (camada <= 2) {
+      console.log(num);
+      let response = await api.get(`/users/${name}/followers`, {
+        auth: {
+          username: process.env.USER,
+          password: process.env.PASS,
+        },
+      });
 
       response.data.map(user => {
         let data = {
           login: user.login,
           avatar_url: user.avatar_url,
         };
-        vizinhos.push(user.login);
-        graph.addNode(data);
+        if (
+          vizinhos.find(function(element) {
+            return element === user.login;
+          }) === undefined
+        ) {
+          //verificando nos repetidos
+          vizinhos.push(user.login);
+
+          graph.addNode(data);
+          graph.addEdge(inicial['login'], data['login']);
+        }
         graph.addEdge(inicial['login'], data['login']);
       });
+
+      if (num === 0) {
+        num = vizinhos.length - cont;
+        camada += 1;
+      }
       inicial = {
         login: vizinhos[cont],
       };
       name = vizinhos[cont];
       cont += 1;
+      num -= 1;
     }
     console.log(vizinhos);
     return res.json('ola');
