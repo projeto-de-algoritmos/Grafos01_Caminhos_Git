@@ -1,6 +1,7 @@
 import 'dotenv/config';
 import api from './api';
 import Graph from './graph';
+
 class BuscaGit {
   async index(req, res) {
     const graph = new Graph();
@@ -39,7 +40,6 @@ class BuscaGit {
           vizinhos.push(user.login);
 
           graph.addNode(data);
-          graph.addEdge(inicial['login'], data['login']);
         }
         graph.addEdge(inicial['login'], data['login']);
       });
