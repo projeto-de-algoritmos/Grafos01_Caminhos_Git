@@ -1,6 +1,7 @@
 class Graph {
   constructor() {
     this.nodes = {};
+    this.bfs_tree = false;
   }
   // em 'data' deve vir o JSON retornado pelo resultado do GET na api do GitHub.
   addNode(data) {
@@ -8,6 +9,7 @@ class Graph {
       login: data['login'],
       image: data['avatar_url'],
       neighbors: [],
+      degree: 0,
       is_visited: false,
     };
 
@@ -17,6 +19,7 @@ class Graph {
 
   addEdge(origin, destiny) {
     this.nodes[origin]['neighbors'].push(destiny);
+    this.nodes[origin]['degree']++;
   }
 
   bfs(origin, destiny) {
@@ -53,9 +56,10 @@ class Graph {
           queue.push(neighbor); // adicionando o nó atual à fila.
           this.nodes[neighbor]['is_visited'] = true; // marcando nó atual como visitado.
 
-          if (this.nodes[neighbor]['login'] === destiny)
-            // se o no atual for igual ao nó que estou procurando, retorna a árvore BFS.
+          if (this.nodes[neighbor]['login'] === destiny) { // se o no atual for igual ao nó que estou procurando, retorna a árvore BFS.
+            graph.setBfsTree(resulting_tree);
             return resulting_tree;
+          }
         }
       }
     }
@@ -65,19 +69,41 @@ class Graph {
 
     return {}; // se não encontrar retorna um objeto vazio ( apagando o nó inicial que havia sido colocado na árvore resposta no começo ).
   }
+  
+  getNodes() {
+    return this.nodes; // retornando todos os nós do grafo
+  }
 
-  print() {
+  getEdges() {
+    let edges = [];
     for (let node in this.nodes) {
-      console.log(node);
+      for(let edge of this.nodes[node]['neighbors']) {
+        let new_edge = {
+          origin: node,
+          destiny: edge,
+        }
+        edges.push(new_edge);
+      }
     }
+
+    return edges;
+  }
+
+  setBfsTree(tree) {
+    this.bfs_tree = tree; // recebendo a árvore resposta se a busca em largura for executada;
   }
 
   path(origin, destiny) {
-    let tree = this.bfs(origin, destiny); // salvando a árvore gerada pelo algoritmo BFS.
-
-    if (Object.getOwnPropertyNames(tree).length === 0)
-      // verificando se não é um objeto vazio.
+    let tree = this.bfs_tree;  // pegando a árvore gerada pelo resultado da busca em largura.
+    
+    if (this.bfs_tree === false) {
+      console.log('You need to run bfs function before!');
       return {};
+    }
+    else if (Object.getOwnPropertyNames(tree).length === 0) { // verificando se não é um objeto vazio.
+      console.log('There is not a path!');
+      return {};
+    }
 
     let shortest_path = []; // estrutura para armazenar a lista do menor caminho.
     shortest_path.unshift(destiny); // adiciona o nó procurado na lista.
@@ -94,9 +120,16 @@ class Graph {
 
     return shortest_path; // retornando a lista de menor caminho.
   }
+
+  print() {
+    console.log(this.nodes);
+  }
+
 }
 
 module.exports = Graph;
+
+
 /*
 Exemplo de JSON que deve vir em data:
 
