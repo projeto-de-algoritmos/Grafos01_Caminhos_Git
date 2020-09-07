@@ -27,11 +27,11 @@ class BuscaGit {
     let cont = 0;
     let num = 0;
     let camada = 0;
-    while (camada <= 2) {
+    while (camada <= 1) {
       console.log(num);
       let response = await api.get(`/users/${name}/followers`, {
         headers: {
-          Authorization: 'token ',
+          Authorization: 'token f3b7bb7e822e4ed06b3335a9b84e6f301b73c484',
         },
       });
 

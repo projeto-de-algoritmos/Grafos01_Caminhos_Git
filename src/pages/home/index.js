@@ -15,6 +15,9 @@ function Dashboard(props) {
   });
   const [atualiza, setAtualiza] = useState(false);
   const options = {
+    autoResize: true,
+    height: '100%',
+    width: '100%',
     nodes: {
       borderWidth: 3,
       size: 30,
