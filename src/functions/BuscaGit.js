@@ -8,12 +8,13 @@ class BuscaGit {
     this.edges = {};
   }
 
-  async index(login, pass) {
-    console.log(process.env.USER);
+  async index(login, token) {
+    console.log(token);
     const graph = new Graph();
 
     var temp = await api.get(`/users/${login}`);
     console.log(temp.data.login);
+    console.log(temp.data.token);
     var inicial = {
       login: temp.data.login,
       avatar_url: temp.data.avatar_url,
@@ -31,7 +32,7 @@ class BuscaGit {
       console.log(num);
       let response = await api.get(`/users/${name}/followers`, {
         headers: {
-          Authorization: 'token f3b7bb7e822e4ed06b3335a9b84e6f301b73c484',
+          Authorization: `token ${token}`,
         },
       });
 

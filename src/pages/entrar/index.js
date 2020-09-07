@@ -3,10 +3,10 @@ import { Form, Input } from '@rocketseat/unform';
 import { Wrapper, Content } from './styles';
 import logo from '../../assets/logo.png';
 function Logar(props) {
-  function handleSubmit({ name, password }) {
+  function handleSubmit({ token, name }) {
     props.history.push({
       pathname: '/home',
-      state: { login: name, pass: password },
+      state: { token: token, user: name },
     });
   }
 
@@ -14,9 +14,13 @@ function Logar(props) {
     <Wrapper>
       <Content>
         <img src={logo} alt="git" />
+        <a href="https://github.com/settings/tokens" target="_blank">
+          Token github
+        </a>
         <Form onSubmit={handleSubmit}>
-          <Input name="name" type="fieldName" placeholder=" Usuario" />
-          <Input name="password" type="password" placeholder=" Senha" />
+          <Input name="name" type="fieldName" placeholder="Usuario" />
+
+          <Input name="token" type="fieldName" placeholder="Token" />
 
           <button type="submit">Acessar</button>
         </Form>

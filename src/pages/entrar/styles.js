@@ -20,6 +20,15 @@ export const Content = styled.div`
     align-self: center;
     max-width: 150px;
   }
+  a {
+    color: #fff;
+    margin-top: 15px;
+    font-size: 16px;
+    opacity: 0.8;
+    &:hover {
+      opacity: 1;
+    }
+  }
   form {
     display: flex;
     flex-direction: column;
@@ -58,15 +67,6 @@ export const Content = styled.div`
 
       &:hover {
         background: ${darken(0.03, '#3b9eff')};
-      }
-    }
-    a {
-      color: #fff;
-      margin-top: 15px;
-      font-size: 16px;
-      opacity: 0.8;
-      &:hover {
-        opacity: 1;
       }
     }
   }

@@ -35,8 +35,8 @@ function Dashboard(props) {
   useEffect(() => {
     const fetchData = async () => {
       await BuscaGit.index(
-        props.location.state.login,
-        props.location.state.pass
+        props.location.state.user,
+        props.location.state.token
       );
 
       setNode(BuscaGit.getNode());
