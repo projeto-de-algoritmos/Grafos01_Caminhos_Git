@@ -6,7 +6,7 @@ function Logar(props) {
   function handleSubmit({ name, password }) {
     props.history.push({
       pathname: '/home',
-      state: { user: name, password },
+      state: { login: name, pass: password },
     });
   }
 

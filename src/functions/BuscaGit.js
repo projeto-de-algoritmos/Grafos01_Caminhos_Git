@@ -8,19 +8,18 @@ class BuscaGit {
     this.edges = {};
   }
 
-  async index(request) {
+  async index(login, pass) {
+    console.log(login);
     const graph = new Graph();
-    // let inicial = {
-    //   login: 'Andre-Eduardo',
-    //   avatar_url: 'https://avatars0.githubusercontent.com/u/31700115?v=4',
-    // }; // inicial
-    var temp = await api.get(`/users/${inicio.user}`);
 
+    var temp = await api.get(`/users/${login}`);
+    console.log(temp.data.login);
     var inicial = {
-      login: temp.login,
-      avatar_url: temp.avatar_url,
+      login: temp.data.login,
+      avatar_url: temp.data.avatar_url,
     };
-    let name = 'Andre-Eduardo';
+    console.log(inicial);
+    let name = temp.data.login;
 
     let vizinhos = [];
 
@@ -33,8 +32,8 @@ class BuscaGit {
       let response = await api.get(`/users/${name}/followers?per_page=10`, {
         // pega ate os 100 primeiros seguidores
         auth: {
-          username: process.env.USER,
-          password: process.env.PASS,
+          username: `${login}`,
+          password: `${pass}`,
         },
       });
 

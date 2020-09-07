@@ -7,8 +7,6 @@ import { Container } from './styles';
 import logo from '../../assets/logo.png';
 
 function Dashboard(props) {
-  //console.log(props.location.state.user);
-  BuscaGit.index(props.location.state);
   const [node, setNode] = useState([]);
   const [edge, setEdge] = useState([]);
   const [graph, setgraph] = useState({
@@ -32,7 +30,11 @@ function Dashboard(props) {
 
   useEffect(() => {
     const fetchData = async () => {
-      await BuscaGit.index();
+      await BuscaGit.index(
+        props.location.state.login,
+        props.location.state.pass
+      );
+
       setNode(BuscaGit.getNode());
       setEdge(BuscaGit.getEdge());
     };
