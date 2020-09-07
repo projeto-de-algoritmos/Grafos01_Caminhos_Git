@@ -13,6 +13,7 @@ function Dashboard(props) {
     nodes: [],
     edges: [],
   });
+  const [atualiza, setAtualiza] = useState(false);
   const options = {
     nodes: {
       borderWidth: 3,
@@ -40,9 +41,10 @@ function Dashboard(props) {
     };
 
     fetchData();
-  }, []);
+  }, [atualiza]);
 
-  function handleSubmit({ name, password }) {
+  function handleSubmit({ camadas, Usuario_Buscado }) {
+    setAtualiza(true);
     const data = {
       nodes: [],
       edges: [],
@@ -64,14 +66,7 @@ function Dashboard(props) {
   return (
     <Container>
       {console.log(node)}
-      {/* {console.log(
-        graph.nodes.push({
-          id: 6,
-          label: 'Node 6',
-          title: 'node 2 tootip text',
-        })
-      )} */}
-      {/* {graph.edges.push({ from: 1, to: 5 })} */}
+
       <Form onSubmit={handleSubmit}>
         <Input
           name="camadas"

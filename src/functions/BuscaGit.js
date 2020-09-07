@@ -9,7 +9,7 @@ class BuscaGit {
   }
 
   async index(login, pass) {
-    console.log(login);
+    console.log(process.env.USER);
     const graph = new Graph();
 
     var temp = await api.get(`/users/${login}`);
@@ -27,13 +27,11 @@ class BuscaGit {
     let cont = 0;
     let num = 0;
     let camada = 0;
-    while (camada <= 1) {
+    while (camada <= 2) {
       console.log(num);
-      let response = await api.get(`/users/${name}/followers?per_page=10`, {
-        // pega ate os 100 primeiros seguidores
-        auth: {
-          username: `${login}`,
-          password: `${pass}`,
+      let response = await api.get(`/users/${name}/followers`, {
+        headers: {
+          Authorization: 'token ',
         },
       });
 
