@@ -16,6 +16,7 @@
 
 ## Vídeo
 
+O vídeo está localizado na pasta video que fica na raiz do projeto.
 
 
 ## Screenshots
@@ -23,10 +24,6 @@
 **Tela Login:**
 
 ![](imgs/tela_login.png)
-
-Onde é preciso colocar o usuário, no qual o grafo será gerado com base nos seguidores deste usuário.
-
-Também é preciso colocar um token de autenticação para poderem ser feitas 5000 requisições em vez de 60 (não autenticado), esse token pode ser gerado [aqui](https://github.com/settings/tokens).
 
 **Tela inicial:**
 
@@ -59,7 +56,12 @@ yarn start:
 
 ## Uso
 
-De forma geral, o usuário coloca o seu nick do GitHub, o nick de outra pessoa que ele deseja procurar e o número de camadas que essa busca vai abrangir, por exemplo:
+Na tela de login é preciso colocar o usuário, no qual o grafo será gerado com base nos seguidores deste usuário.
+
+Também é preciso colocar um token de autenticação para poderem ser feitas 5000 requisições em vez de 60 (não autenticado), esse token pode ser gerado [aqui](https://github.com/settings/tokens).
+Na tela inicial, o usuário coloca o seu nick do GitHub, o nick de outra pessoa que ele deseja procurar, por exemplo:
+
+Na tela inicial pode ser colocado também como input qualquer outro nó dentro do grafo gerado inicialmente, e também qualquer outro que se quer fazer a busca.
 
 **Exemplo de input**
 
@@ -74,6 +76,6 @@ Nesse caso o algoritmo irá procurar os seguidores dos seguidores de arthurarp, 
 
 ## Outros
 
-Como o GitHub tem um limite de requisições por hora (5000 se estiver autenticado) o nosso projeto ficou limitado a duas camadas de busca, o que não deu pra representar a teoria de Kevin Bacon que são até 6 camadas.
+Como o GitHub tem um limite de requisições por hora (5000 se estiver autenticado) o nosso projeto ficou limitado a duas camadas de busca, o que não deu pra representar à risca a teoria de Kevin Bacon que são até 6 camadas.
 
 
