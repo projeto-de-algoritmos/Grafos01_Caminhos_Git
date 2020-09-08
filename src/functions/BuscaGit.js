@@ -6,11 +6,11 @@ class BuscaGit {
   constructor() {
     this.nodes = {};
     this.edges = {};
+    this.graph = new Graph();
   }
 
   async index(login, token) {
     console.log(token);
-    const graph = new Graph();
 
     var temp = await api.get(`/users/${login}`);
     console.log(temp.data.login);
@@ -21,14 +21,13 @@ class BuscaGit {
     };
     console.log(inicial);
     let name = temp.data.login;
-
     let vizinhos = [];
-
-    graph.addNode(inicial);
     let cont = 0;
     let num = 0;
     let camada = 0;
-    while (camada <= 1) {
+    this.graph.addNode(inicial);
+
+    while (camada <= 2) {
       console.log(num);
       let response = await api.get(`/users/${name}/followers`, {
         headers: {
@@ -49,9 +48,10 @@ class BuscaGit {
           //verificando nos repetidos
           vizinhos.push(user.login);
 
-          graph.addNode(data);
+          this.graph.addNode(data);
         }
-        graph.addEdge(inicial['login'], data['login']);
+
+        this.graph.addEdge(inicial['login'], data['login']);
       });
 
       if (num === 0) {
@@ -67,8 +67,9 @@ class BuscaGit {
     }
 
     // console.log(vizinhos);
-    this.nodes = graph.getNodes();
-    this.edges = graph.getEdges();
+    this.nodes = this.graph.getNodes();
+    this.edges = this.graph.getEdges();
+    console.log(this.edges);
     return;
   }
   getNode() {
@@ -76,6 +77,13 @@ class BuscaGit {
   }
   getEdge() {
     return this.edges;
+  }
+  BuscaUsuario(origem, destino) {
+    console.log([origem, destino]);
+
+    console.log(this.graph.bfs(origem, destino));
+    this.graph.bfs(origem, destino);
+    return this.graph.path(origem, destino);
   }
 }
 

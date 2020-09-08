@@ -63,27 +63,57 @@ function Dashboard(props) {
     edge.map((k) => {
       data.edges.push(k);
     });
-    console.log(data);
+
     setgraph(data);
   }
+  function gerarCaminho({ origem, buscado }) {
+    const data = {
+      nodes: [],
+      edges: [],
+    };
+    let no;
+    const lista = BuscaGit.BuscaUsuario(origem, buscado);
+    try {
+      console.log(lista);
+      lista.map((user) => {
+        no = node[user];
+        data.nodes.push({
+          id: no.login,
+          shape: 'circularImage',
+          image: no.image,
+        });
+      });
+      for (var i in lista) {
+        let j = i;
+        console.log(i);
+
+        data.edges.push({
+          from: lista[j],
+          to: lista[++j],
+        });
+      }
+
+      console.log(data.edges);
+      setgraph(data);
+    } catch (e) {
+      alert('Usuário não exite no grafo mapeado');
+      return;
+    }
+  }
+
   return (
     <Container>
       {console.log(node)}
 
-      <Form onSubmit={handleSubmit}>
-        <Input
-          name="camadas"
-          type="fieldName"
-          placeholder=" Numero de camadas"
-        />
-        <Input
-          name="Usuario_Buscado"
-          type="fieldName"
-          placeholder=" Usuario Buscado"
-        />
+      <Form onSubmit={gerarCaminho}>
+        <Input name="origem" type="fieldName" placeholder="Nó de Origem" />
+        <Input name="buscado" type="fieldName" placeholder=" Usuario Buscado" />
 
-        <button type="submit">Buscar</button>
+        <button type="submit">Menor Caminho</button>
       </Form>
+      <button type="submit" onClick={handleSubmit}>
+        iniciar
+      </button>
       <Graph graph={graph} options={options} />
     </Container>
   );
