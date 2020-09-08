@@ -73,10 +73,6 @@ function Dashboard(props) {
     };
     let no;
     const lista = BuscaGit.BuscaUsuario(origem, buscado);
-    console.log(origem);
-    if (origem === '') {
-      origem = props.location.state.user;
-    }
     try {
       console.log(lista);
       lista.map((user) => {
