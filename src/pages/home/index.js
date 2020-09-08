@@ -3,7 +3,7 @@ import { Form, Input } from '@rocketseat/unform';
 import BuscaGit from '../../functions/BuscaGit';
 
 import Graph from 'react-graph-vis';
-import { Container } from './styles';
+import { Container, Formulario } from './styles';
 import logo from '../../assets/logo.png';
 
 function Dashboard(props) {
@@ -73,6 +73,10 @@ function Dashboard(props) {
     };
     let no;
     const lista = BuscaGit.BuscaUsuario(origem, buscado);
+    console.log(origem);
+    if (origem === '') {
+      origem = props.location.state.user;
+    }
     try {
       console.log(lista);
       lista.map((user) => {
@@ -103,17 +107,21 @@ function Dashboard(props) {
 
   return (
     <Container>
-      {console.log(node)}
+      <Formulario>
+        <Form onSubmit={gerarCaminho}>
+          <Input name="origem" type="fieldName" placeholder="Nó de Origem" />
+          <Input
+            name="buscado"
+            type="fieldName"
+            placeholder=" Usuario Buscado"
+          />
 
-      <Form onSubmit={gerarCaminho}>
-        <Input name="origem" type="fieldName" placeholder="Nó de Origem" />
-        <Input name="buscado" type="fieldName" placeholder=" Usuario Buscado" />
-
-        <button type="submit">Menor Caminho</button>
-      </Form>
-      <button type="submit" onClick={handleSubmit}>
-        iniciar
-      </button>
+          <button type="submit">Menor Caminho</button>
+        </Form>
+        <button type="submit" onClick={handleSubmit}>
+          Gerar grafo
+        </button>
+      </Formulario>
       <Graph graph={graph} options={options} />
     </Container>
   );
