@@ -25,7 +25,7 @@ function Dashboard(props) {
         border: '#222222',
         background: '#666666',
       },
-      font: { color: '#eeeeee' },
+      font: { color: '#eeeeee', size: 8 },
     },
     edges: {
       color: 'lightgray',
@@ -58,6 +58,7 @@ function Dashboard(props) {
         id: no.login,
         shape: 'circularImage',
         image: no.image,
+        label: no.login,
       });
     });
     edge.map((k) => {
@@ -67,13 +68,13 @@ function Dashboard(props) {
     setgraph(data);
   }
   function gerarCaminho({ origem, buscado }) {
+    try {
     const data = {
       nodes: [],
       edges: [],
     };
     let no;
     const lista = BuscaGit.BuscaUsuario(origem, buscado);
-    try {
       console.log(lista);
       lista.map((user) => {
         no = node[user];
@@ -81,6 +82,7 @@ function Dashboard(props) {
           id: no.login,
           shape: 'circularImage',
           image: no.image,
+          label: no.login,
         });
       });
       for (var i in lista) {
