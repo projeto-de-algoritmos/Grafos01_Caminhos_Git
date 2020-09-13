@@ -39,20 +39,35 @@ O vídeo está localizado na pasta video que fica na raiz do projeto.
 
 ## Instalação
 
-**Linguagem**: JavaScript<br>
+**Linguagem**: JavaScript
 **Framework**: React<br>
 
-Para rodar o projeto é necessário ter instalado:
+Primeiramente utilizaremos a ferramenta [git](https://git-scm.com/downloads) que é necessária para clonar o repositório:
 
-Yarn;<br>
+    $ git clone https://github.com/projeto-de-algoritmos/Grafos01_Caminhos_Git
+
+Após clonar o repositório, é preciso acessar a pasta raiz do projeto:
+
+    Exemplo para o linux:
+
+    $ cd Grafos01_Caminhos_Git
+
+Para rodar o projeto é necessário ter instalado o [yarn](https://classic.yarnpkg.com/pt-BR/docs/install/#debian-stable) na versão estável mais atual.
 
 Após instalar o yarn, vamos instalar as dependências do projeto.
 
-yarn install;
+    Na pasta raiz, execute:
 
-Depois é só subir o servidor:
+    $ yarn install
 
-yarn start:
+Depois, subir o servidor:
+
+    $ yarn start
+
+E então acessar no navegador:
+
+    http://localhost:3000/
+
 
 ## Uso
 
